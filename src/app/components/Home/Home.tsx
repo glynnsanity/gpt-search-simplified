@@ -77,6 +77,7 @@ export default function Home() {
     setDecision(null);
     setLoading(true);
 
+    // The results from our search API route will contain our product information, and LaunchDarkly's activation result
     try {
       const results: SearchResultsType = await fetchData("/api/product-search", {
         query,
@@ -84,14 +85,11 @@ export default function Home() {
         clientContext: getContext(), // Pass the current context to the API
       });
 
-      console.log('context result ', getContext());
-
       const context = getContext();
       setContextForDisplay(context);
 
       if (Array.isArray(results.productResults)) {
         setProducts(results.productResults);
-        console.log("LDResponse returned:", results.decision);
       } else {
         console.error("Invalid response format");
         setProducts([]);
@@ -101,6 +99,7 @@ export default function Home() {
         setDecision(results.decision);
 
         // If the LD decision suggests adding a new affinity, update the context in sessionStorage
+        // Hardcoding our Gen Z use case for now -- should be updated later alongside the updateContext function
         if (results.decision.gptActivationDecision.relevance > 0.7) {
           updateContext("Gen Z");
         }
