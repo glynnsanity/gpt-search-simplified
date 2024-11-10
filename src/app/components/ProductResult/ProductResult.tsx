@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./answer.module.css";
+import styles from "./result.module.css";
 import DOMPurify from 'dompurify';
 
 interface ProductResultProps {

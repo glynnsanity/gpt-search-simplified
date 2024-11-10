@@ -12,12 +12,23 @@ interface ExperimentDetails {
   description: string;
 }
 
+interface ModalConfig {
+  model: string;
+  temperature: number;
+}
+
 export class LDDynamicToggleConstructor {
+  private model_config
+
+  constructor(model_config: ModalConfig) {
+    this.model_config = model_config;
+  }
+
   private async activateWithGPT(query: string, experiment: ExperimentDetails): Promise<LDDynamicToggleProps> {
     try {
       const response = await openaiClient.chat.completions.create({
-        model: 'gpt-4o',
-        temperature: 0.3,
+        model: this.model_config.model,
+        temperature: this.model_config.temperature,
         messages: [
           { role: "system",
             content: `You are an assistant that evaluates relevance for specific demographic-based LaunchDarkly experiment flags for the purpose of audience segmentation. 

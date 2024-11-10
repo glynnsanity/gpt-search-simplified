@@ -9,7 +9,7 @@ export const Navbar: FC = () => {
           className="hover:opacity-50"
           href="https://madetrade.com"
         >
-          MadeTrade Search
+          ChatGPT + LaunchDarkly Search
         </a>
       </div>
       <div>
@@ -19,7 +19,7 @@ export const Navbar: FC = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <div className="hidden sm:flex">MadeTrade.com</div>
+          <div className="hidden sm:flex">Using data from madetrade.com</div>
           <ExternalLink
             className="ml-1"
             size={20}

@@ -3,7 +3,7 @@ import { getLaunchDarklyClient } from '../launchdarkly/launchdarklyServerClient'
 import { LDDynamicToggleConstructor } from '@/services/dynamic-trigger/LDDynamicToggleConstructor';
 
 const ldClient = getLaunchDarklyClient();
-const dynamicToggler = new LDDynamicToggleConstructor();
+const dynamicToggler = new LDDynamicToggleConstructor({ model: 'gpt-4o', temperature: 0.3 });
 
 interface ExperimentDecisionParams {
   flag_name: string;
@@ -13,7 +13,7 @@ interface ExperimentDecisionParams {
 interface UserContext {
   key: string;
   kind: string;
-  anonymous: boolean;
+  anonymous?: boolean;
   custom?: {
     affinities?: string[];
   };
@@ -27,7 +27,7 @@ function updateUserContext(
   const newContext = { ...currentContext };
 
   if (!newContext.custom) newContext.custom = {};
-  if (!newContext.custom.affinities) newContext.custom.affinities = [];
+  if (!newContext.custom.affinities) newContext.custom.affinities = ['Quick Test'];
 
   // Add the new affinity only if it isn’t already in the array
   if (!newContext.custom.affinities.includes(activationDecision.addAffinity)) {
@@ -44,11 +44,20 @@ export async function getFlagAndExperimentDecision(query: string, params: Experi
   ]);
 
 
+  /* -- Option for initializing the dynamicToggler after evaluating an experiment for ChatGPT models -- */
+  /* 
+    await ldClient.waitForInitialization();
+    const ldModelJSON = await ldClient.jsonVariation('chat-gpt-model-test', clientContext, false);
+    const experimentalDynamicToggler = new LDDynamicToggleConstructor(ldModelJSON)
+  */
+
+    
   // Update the context based on GPT decision
   const activate = gptActivationDecision.relevance > 0.7;
   const updatedContext = activate
     ? updateUserContext(clientContext, { addAffinity: 'Gen Z' })
     : clientContext;
+
 
   // Pass the updated context to LaunchDarkly to evaluate the flag
   console.log("Using userContext:", updatedContext);

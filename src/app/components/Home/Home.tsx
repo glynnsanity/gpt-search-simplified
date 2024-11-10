@@ -1,9 +1,9 @@
 "use client";
 
-import { ProductResult } from "../ProductAnswer/ProductResult";
-import { Footer } from "../Footer/Footer";
+import { ProductResult } from "../ProductResult/ProductResult";
 import { Navbar } from "../Nav/Navbar";
 import { SearchBar } from "../SearchBar/SearchBar";
+import { LDSidePanel } from "../LDSidePanel/LDSidePanel";
 import { ProductInfo } from "@/types/product";
 import { KeyboardEvent, useRef, useState } from "react";
 import { fetchData } from "@/utils/fetchData";
@@ -51,7 +51,7 @@ export default function Home() {
   const [products, setProducts] = useState<ProductInfo[]>([]);
   const [decision, setDecision] = useState<LDDecisionResultType | null>(null);
   const [loading, setLoading] = useState(false);
-  const [contextForDisplay, setContextForDisplay] = useState({});
+  const [contextForDisplay, setContextForDisplay] = useState<any>({});
   const matchCount = 5;
 
   // Retrieve or initialize the user context
@@ -148,40 +148,11 @@ export default function Home() {
                   />
                 ))}
               </div>
-              <div className="bg-gray-100 p-4 rounded shadow-md">
-                <h2 className="text-lg font-semibold mb-2">Experiment Details</h2>
-                <div className="mb-4">
-                  <p className="font-medium">Flag Decision:</p>
-                  <p className="text-green-600 font-bold">{decision && decision.ldFlagDecision.value ? "Active" : "Inactive"}</p>
-                </div>
-                <div className="mb-4">
-                  <p className="font-medium">Context:</p>
-                  <p className="text-green-600 font-bold">{contextForDisplay ? JSON.stringify(contextForDisplay) : "No Context"}</p>
-                </div>
-
-                <h3 className="text-md font-semibold mb-2">GPT Activation Decision</h3>
-                <div className="mb-2">
-                  <p className="font-medium">Flag Name:</p>
-                  <p>{decision ? decision.gptActivationDecision.flag_name : "None"}</p>
-                </div>
-                <div className="mb-2">
-                  <p className="font-medium">Relevance:</p>
-                  <p>{decision ? decision.gptActivationDecision.relevance : "None"}</p>
-                </div>
-                <div className="mb-2">
-                  <p className="font-medium">Context Alignment:</p>
-                  <p className="capitalize">{decision ? decision.gptActivationDecision.context_alignment : "None"}</p>
-                </div>
-                <div className="mb-4">
-                  <p className="font-medium">Reasoning:</p>
-                  <p className="text-sm text-gray-700">{decision ? decision.gptActivationDecision.reasoning : "None"}</p>
-                </div>
-              </div>
+              <LDSidePanel decision={decision} contextForDisplay={contextForDisplay}/>
             </div>
           ) : null}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

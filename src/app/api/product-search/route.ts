@@ -8,7 +8,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 interface UserContext {
   key: string;
   kind: string;
-  anonymous: boolean;
+  anonymous?: boolean;
   custom?: {
     affinities?: string[];
     [key: string]: any;
