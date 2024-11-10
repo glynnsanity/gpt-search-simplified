@@ -6,16 +6,16 @@ This will have all the same npm run functions as a normal Next app so getting st
 
 However, for this app to function it will require some API keys defined in an .env.local file include the below - 
 
-OPENAI_API_KEY=
-NEXT_PUBLIC_SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
-LAUNCH_DARKLY_SDK_KEY=
+OPENAI_API_KEY=\
+NEXT_PUBLIC_SUPABASE_URL=\
+SUPABASE_SERVICE_ROLE_KEY=\
+LAUNCH_DARKLY_SDK_KEY=\
 
 (This is actually incomplete since there's a number of database set up steps that I'll have to come back to)
 
-Primary features to note:
-ChatGPT Embeddings & ChatCompletion APIs
-LaunchDarkly Flag Evaluation & Segment Bucketing
+Primary features to note:\
+ChatGPT Embeddings & ChatCompletion APIs\
+LaunchDarkly Flag Evaluation & Segment Bucketing\
 
 ## High-Level Highlights for LaunchDarkly
 
