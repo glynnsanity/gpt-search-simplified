@@ -40,7 +40,7 @@ There are a good bit of things happening here, so for the purpose of simplificat
 Starting with our *Home component* within our components folder, this is a client side component that manages the user input and results display. It makes the call to our api route within the api/product-search folder, passing the user input query, our desired product match count, and our LaunchDarkly user context.
 
 
-#### Search API Route
+### Search API Route
 
 Our search API route takes those values passed fans them out into 3 new processes. 
 
