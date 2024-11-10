@@ -35,12 +35,12 @@ This activation then updates our React state and our sessionStorage in order to 
 
 There are a good bit of things happening here, so for the purpose of simplification, lets narrow down to areas of focus for the most pertinent functionality. 
 
-#### Home Component
+### Home Component
 
 Starting with our *Home component* within our components folder, this is a client side component that manages the user input and results display. It makes the call to our api route within the api/product-search folder, passing the user input query, our desired product match count, and our LaunchDarkly user context.
 
 
-##### Search API Route
+#### Search API Route
 
 Our search API route takes those values passed fans them out into 3 new processes. 
 
@@ -58,12 +58,12 @@ The second part is sending our query to the ChatGPT embeddings model to create a
 
 Lastly, we send our query embedding vector to Supabase where a SQL function executes that retrieves a set of product data based on vector mapping relevancy and returns it.
 
-#### Search Return
+### Search Return
 
 The api route then sends back an object with product data and decision data regarding our LaunchDarkly segment/flag evaluation.
 
 
-#### UX Display & Context Persistence
+### UX Display & Context Persistence
 
 Once the data is returned to our component, we render the product data and a side column view with the results from our LaunchDarkly evaluator. In addition to this, we update both our context state and sessionStorage with the upated User Context.
 
