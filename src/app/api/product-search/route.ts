@@ -11,7 +11,6 @@ interface UserContext {
   anonymous?: boolean;
   custom?: {
     affinities?: string[];
-    [key: string]: any;
   };
 }
 

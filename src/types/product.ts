@@ -10,3 +10,12 @@ export interface ProductInfo {
   embedding_vector: number[];
   product_url: string;  // Added product URL field
 }
+
+export interface ProductResultsType {
+  text: string;
+  title: string;
+  image: string | null;
+  price: number;
+  tags?: string[];
+  productUrl?: string;
+}

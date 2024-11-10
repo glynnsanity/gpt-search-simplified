@@ -4,34 +4,10 @@ import { ProductResult } from "../ProductResult/ProductResult";
 import { Navbar } from "../Nav/Navbar";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { LDSidePanel } from "../LDSidePanel/LDSidePanel";
-import { ProductInfo } from "@/types/product";
+import { ProductInfo, ProductResultsType } from "@/types/product";
+import { LDDecisionResultType } from "@/types/decision";
 import { KeyboardEvent, useRef, useState } from "react";
 import { fetchData } from "@/utils/fetchData";
-
-export interface ProductResultsType {
-  text: string;
-  title: string;
-  image: string | null;
-  price: number;
-  tags?: string[];
-  productUrl?: string;
-}
-
-interface LDDecisionResultType {
-  ldFlagDecision: {
-    reason: {
-      kind: string;
-    }
-    value: string;
-    variationIndex: number;
-  };
-  gptActivationDecision: {
-    flag_name: string;
-    relevance: number;
-    reasoning: string;
-    context_alignment: string;
-  };
-}
 
 interface SearchResultsType {
   productResults: ProductInfo[];

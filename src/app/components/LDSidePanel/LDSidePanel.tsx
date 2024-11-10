@@ -1,20 +1,5 @@
 import React from "react"
-
-interface LDDecisionResultType {
-  ldFlagDecision: {
-    reason: {
-      kind: string;
-    }
-    value: string;
-    variationIndex: number;
-  };
-  gptActivationDecision: {
-    flag_name: string;
-    relevance: number;
-    reasoning: string;
-    context_alignment: string;
-  };
-}
+import { LDDecisionResultType } from "@/types/decision";
 
 interface UserContext {
   key: string;
@@ -27,10 +12,8 @@ interface UserContext {
 
 interface LDSidePanelProps {
   decision: LDDecisionResultType | null;
-  contextForDisplay: UserContext
+  contextForDisplay: UserContext;
 }
-
-  
 
 export function LDSidePanel({ decision, contextForDisplay }: LDSidePanelProps){
   return (
