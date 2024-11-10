@@ -1,18 +1,10 @@
 // app/api/product-search/route.ts
 
 import { supabaseAdmin } from '@/services/supabase/supabaseAdmin';
+import { UserContext } from '@/types/usercontext';
 import { getFlagAndExperimentDecision } from '@/services/ai-search/optimizedSearchService';
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
-interface UserContext {
-  key: string;
-  kind: string;
-  anonymous?: boolean;
-  custom?: {
-    affinities?: string[];
-  };
-}
 
 export const config = {
   runtime: "edge",

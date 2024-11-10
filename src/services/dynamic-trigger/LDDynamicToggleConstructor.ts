@@ -1,4 +1,5 @@
 import { openaiClient } from "../openai/openaiClient";
+import { ExperimentDetails, ModelConfig } from "@/types/experiment";
 
 interface LDDynamicToggleProps {
   flag_name: string;
@@ -7,20 +8,10 @@ interface LDDynamicToggleProps {
   context_alignment: "low" | "medium" | "high";
 }
 
-interface ExperimentDetails {
-  flag_name: string;
-  description: string;
-}
-
-interface ModalConfig {
-  model: string;
-  temperature: number;
-}
-
 export class LDDynamicToggleConstructor {
   private model_config
 
-  constructor(model_config: ModalConfig) {
+  constructor(model_config: ModelConfig) {
     this.model_config = model_config;
   }
 
