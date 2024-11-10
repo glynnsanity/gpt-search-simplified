@@ -1,6 +1,7 @@
 // services/experimentHelper.ts
 import { getLaunchDarklyClient } from '../launchdarkly/launchdarklyServerClient';
 import { LDDynamicToggleConstructor } from '@/services/dynamic-trigger/LDDynamicToggleConstructor';
+import { UserContext } from '@/types/usercontext';
 
 const ldClient = getLaunchDarklyClient();
 const dynamicToggler = new LDDynamicToggleConstructor({ model: 'gpt-4o', temperature: 0.3 });
@@ -8,15 +9,6 @@ const dynamicToggler = new LDDynamicToggleConstructor({ model: 'gpt-4o', tempera
 interface ExperimentDecisionParams {
   flag_name: string;
   description: string;
-}
-
-interface UserContext {
-  key: string;
-  kind: string;
-  anonymous?: boolean;
-  custom?: {
-    affinities?: string[];
-  };
 }
 
 // Update the context based on GPT decision
@@ -51,7 +43,7 @@ export async function getFlagAndExperimentDecision(query: string, params: Experi
     const experimentalDynamicToggler = new LDDynamicToggleConstructor(ldModelJSON)
   */
 
-    
+
   // Update the context based on GPT decision
   const activate = gptActivationDecision.relevance > 0.7;
   const updatedContext = activate

@@ -4,7 +4,7 @@ import { ProductResult } from "../ProductResult/ProductResult";
 import { Navbar } from "../Nav/Navbar";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { LDSidePanel } from "../LDSidePanel/LDSidePanel";
-import { ProductInfo, ProductResultsType } from "@/types/product";
+import { ProductInfo } from "@/types/product";
 import { LDDecisionResultType } from "@/types/decision";
 import { KeyboardEvent, useRef, useState } from "react";
 import { fetchData } from "@/utils/fetchData";
