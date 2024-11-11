@@ -99,7 +99,7 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
-      <div className="mx-auto flex w-full max-w-[800px] flex-col items-center px-3 pt-4 sm:pt-8">
+      <div className="mx-auto flex w-full max-w-[650px] flex-col items-center px-3 pt-4 sm:pt-8">
         <SearchBar
           inputRef={inputRef}
           query={query}
@@ -109,7 +109,7 @@ export default function Home() {
         />
       </div>
       <div className="flex-1 overflow-auto relative">
-        <div className="mx-auto flex h-full w-full max-w-[1200px] flex-col items-center px-3 pt-4 sm:pt-8">
+        <div className="mx-auto flex h-full w-full max-w-[975px] flex-col items-center px-3 pt-4 sm:pt-8">
           {loading ? (
             <div className="animate-pulse mt-2 h-4 bg-gray-300 rounded w-full"></div>
           ) : products.length > 0 ? (

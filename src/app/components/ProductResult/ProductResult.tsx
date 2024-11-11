@@ -23,12 +23,12 @@ export const ProductResult: React.FC<ProductResultProps> = ({ descriptionHtml, t
         <div className="">
           <img src={image} alt={title} className={styles.productImage} />
         </div>
-        <h3 className="font-bold text-xl">{title}</h3>
-        <div className="text-green-600 font-semibold mb-2">${(price / 100).toFixed(2)}</div>
+        <h3 className="font-bold text-md mt-2">{title}</h3>
+        <div className="text-green-600 font-semibold mb-2 text-xs">${(price / 100).toFixed(2)}</div>
         {/* <p>{descriptionSinHtml}</p> */}
         <div 
           dangerouslySetInnerHTML={{ __html: sanitizedHtml }} 
-          className="prose prose-sm max-w-none"
+          className="prose prose-sm max-w-none text-xs leading-5"
         />
       </div>
     </div>

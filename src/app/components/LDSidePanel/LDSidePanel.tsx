@@ -18,25 +18,25 @@ interface LDSidePanelProps {
 export function LDSidePanel({ decision, contextForDisplay }: LDSidePanelProps){
   return (
     <div className="bg-gray-100 p-4 rounded shadow-md">
-      <h2 className="text-xl font-semibold mb-2">Experiment Details</h2>
+      <h2 className="text-md font-semibold mb-2">Experiment Details</h2>
       <div className="mb-4">
-        <p className="font-medium text-lg italic">Flag Decision:</p>
-        <p className="text-green-600 font-bold">{decision && decision.ldFlagDecision.value ? "Active" : "Inactive"}</p>
+        <p className="font-medium text-sm italic">Flag Decision:</p>
+        <p className="text-green-600 font-bold text-sm">{decision && decision.ldFlagDecision.value ? "Active" : "Inactive"}</p>
       </div>
       {contextForDisplay ? (
         <div className="relative mb-4">
-          <p className="font-medium text-lg italic">Context:</p>
-          <p className="font-bold"><span>Key: </span><span className="font-medium">{`${JSON.stringify(contextForDisplay.key)}`}</span></p>
-          <p className="font-bold"><span>Kind: </span><span className="font-medium">{`${JSON.stringify(contextForDisplay.kind)}`}</span></p>
-          <p className="font-medium text-lg italic mt-4">Custom Attributes:</p>
+          <p className="font-medium text-sm italic">Context:</p>
+          <p className="font-bold text-xs"><span>Key: </span><span className="font-medium">{`${JSON.stringify(contextForDisplay.key)}`}</span></p>
+          <p className="font-bold text-xs"><span>Kind: </span><span className="font-medium">{`${JSON.stringify(contextForDisplay.kind)}`}</span></p>
+          <p className="font-medium text-sm italic mt-4">Custom Attributes:</p>
           {Object.keys(contextForDisplay.custom).map((item: string, index: number)=> {
             const attribute = contextForDisplay.custom[item as keyof typeof contextForDisplay.custom];
             return item === 'affinities' ? (
               <div key={index}>
-                <p className="font-bold">Affinities:</p>
+                <p className="font-bold text-sm">Affinities:</p>
                 {attribute.map((affinity: string, index: number) => {
                   return (
-                    <p key={index} className="font-medium">{affinity}</p>
+                    <p key={index} className="font-medium text-xs">{affinity}</p>
                   )
                 })}
               </div>
@@ -52,22 +52,22 @@ export function LDSidePanel({ decision, contextForDisplay }: LDSidePanelProps){
         </div>
       )}
 
-      <h2 className="text-xl font-semibold text-lg mb-2 mt-8">GPT Activation Decision</h2>
+      <h2 className="text-md font-semibold mb-2 mt-8">GPT Activation Decision</h2>
       <div className="mb-2">
-        <p className="font-semibold">Flag Name:</p>
-        <p>{decision ? decision.gptActivationDecision.flag_name : "None"}</p>
+        <p className="font-semibold text-xs">Flag Name:</p>
+        <p className="text-xs">{decision ? decision.gptActivationDecision.flag_name : "None"}</p>
       </div>
       <div className="mb-2">
-        <p className="font-semibold">Relevance:</p>
-        <p>{decision ? decision.gptActivationDecision.relevance : "None"}</p>
+        <p className="font-semibold text-xs">Relevance:</p>
+        <p className="text-xs">{decision ? decision.gptActivationDecision.relevance : "None"}</p>
       </div>
       <div className="mb-2">
-        <p className="font-semibold">Context Alignment:</p>
-        <p className="capitalize">{decision ? decision.gptActivationDecision.context_alignment : "None"}</p>
+        <p className="font-semibold text-xs">Context Alignment:</p>
+        <p className="capitalize text-xs">{decision ? decision.gptActivationDecision.context_alignment : "None"}</p>
       </div>
       <div className="mb-4">
-        <p className="font-semibold">Reasoning:</p>
-        <p className="text-sm text-gray-700">{decision ? decision.gptActivationDecision.reasoning : "None"}</p>
+        <p className="font-semibold text-xs">Reasoning:</p>
+        <p className="text-xs text-gray-700 text-xs">{decision ? decision.gptActivationDecision.reasoning : "None"}</p>
       </div>
     </div>
   )
