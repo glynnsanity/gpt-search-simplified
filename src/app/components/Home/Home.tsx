@@ -28,7 +28,7 @@ export default function Home() {
   const [decision, setDecision] = useState<LDDecisionResultType | null>(null);
   const [loading, setLoading] = useState(false);
   const [contextForDisplay, setContextForDisplay] = useState<any>({});
-  const matchCount = 5;
+  const matchCount = 3;
 
   // Retrieve or initialize the user context
   const getContext = () => {
@@ -114,7 +114,7 @@ export default function Home() {
             <div className="animate-pulse mt-2 h-4 bg-gray-300 rounded w-full"></div>
           ) : products.length > 0 ? (
             <div className="mt-6 w-full">
-              <div className="grid grid-cols-3 gap-4 max-w-[1200px]"> {/* Two-column grid layout */}
+              <div className="grid grid-cols-3 gap-14 max-w-[1200px]"> {/* Two-column grid layout */}
                 {products.map((product, index) => (
                   <ProductResult
                     key={product.id || `product-${index}`}
@@ -125,7 +125,7 @@ export default function Home() {
                   />
                 ))}
               </div>
-              <div className="fixed top-28 right-5 w-[20%] p-2 rounded">
+              <div className="fixed top-28 right-16 w-[15%] p-2 rounded">
                 <LDSidePanel decision={decision} contextForDisplay={contextForDisplay}/>  
               </div>
             </div>

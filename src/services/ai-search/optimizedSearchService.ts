@@ -11,6 +11,15 @@ interface ExperimentDecisionParams {
   description: string;
 }
 
+
+/* -- Option for initializing the dynamicToggler after evaluating an experiment for ChatGPT models -- */
+/* 
+  await ldClient.waitForInitialization();
+  const ldModelJSON = await ldClient.jsonVariation('chat-gpt-model-test', clientContext, false);
+  const experimentalDynamicToggler = new LDDynamicToggleConstructor(ldModelJSON)
+*/
+
+
 // Update the context based on GPT decision
 function updateUserContext( currentContext: UserContext, activationDecision: { addAffinity: string }): UserContext {
   const newContext = { ...currentContext };

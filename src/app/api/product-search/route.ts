@@ -3,6 +3,7 @@
 import { supabaseAdmin } from '@/services/supabase/supabaseAdmin';
 import { UserContext } from '@/types/usercontext';
 import { getFlagAndExperimentDecision } from '@/services/ai-search/optimizedSearchService';
+import { summarizeDescription } from '@/services/ai-search/summarizeDescription';
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
@@ -60,6 +61,11 @@ export async function POST(req: Request): Promise<Response> {
       console.error("Supabase error:", error);
       return new Response("Error accessing product data", { status: 500 });
     }
+
+    // for (let i = 0; products.length > i; i++ ) {
+    //   const productDescription = await summarizeDescription('gpt-4o', 0.8, products[i].description)
+    //   products[i].description = productDescription;
+    // }
 
     // Combining our results from Supabase and our LaunchDarkly/GPT service
     const results = { productResults: products, decision: decision };
