@@ -33,21 +33,9 @@ export async function getFlagAndExperimentDecision(query: string, params: Experi
     dynamicToggler.activateExperimentDecision(query, params) // API call for experiment decision
   ]);
 
-
-  /* -- Option for initializing the dynamicToggler after evaluating an experiment for ChatGPT models -- */
-  /* 
-    await ldClient.waitForInitialization();
-    const ldModelJSON = await ldClient.jsonVariation('chat-gpt-model-test', clientContext, false);
-    const experimentalDynamicToggler = new LDDynamicToggleConstructor(ldModelJSON)
-  */
-
-
   // Update the context based on GPT decision
   const activate = gptActivationDecision.relevance > 0.7;
-  const updatedContext = activate
-    ? updateUserContext(clientContext, { addAffinity: 'Gen Z' })
-    : clientContext;
-
+  const updatedContext = activate ? updateUserContext(clientContext, { addAffinity: 'Gen Z' }) : clientContext;
 
   // Pass the updated context to LaunchDarkly to evaluate the flag
   const ldFlagDecision = await ldClient.variationDetail('gen-z-optimized-search', updatedContext, false);
