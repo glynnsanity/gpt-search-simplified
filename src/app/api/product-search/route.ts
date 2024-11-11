@@ -3,7 +3,7 @@
 import { supabaseAdmin } from '@/services/supabase/supabaseAdmin';
 import { UserContext } from '@/types/usercontext';
 import { getFlagAndExperimentDecision } from '@/services/ai-search/optimizedSearchService';
-import { summarizeDescription } from '@/services/ai-search/summarizeDescription';
+// import { summarizeDescription } from '@/services/ai-search/summarizeDescription';
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
