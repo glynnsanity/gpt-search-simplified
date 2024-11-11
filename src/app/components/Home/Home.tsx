@@ -99,21 +99,22 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
-      <div className="flex-1 overflow-auto">
+      <div className="mx-auto flex w-full max-w-[800px] flex-col items-center px-3 pt-4 sm:pt-8">
+        <SearchBar
+          inputRef={inputRef}
+          query={query}
+          onQueryChange={setQuery}
+          onSearch={handleResults}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+      <div className="flex-1 overflow-auto relative">
         <div className="mx-auto flex h-full w-full max-w-[1200px] flex-col items-center px-3 pt-4 sm:pt-8">
-          <SearchBar
-            inputRef={inputRef}
-            query={query}
-            onQueryChange={setQuery}
-            onSearch={handleResults}
-            onKeyDown={handleKeyDown}
-          />
-
           {loading ? (
             <div className="animate-pulse mt-2 h-4 bg-gray-300 rounded w-full"></div>
           ) : products.length > 0 ? (
-            <div className="mt-6 w-full grid grid-cols-3 gap-4">
-              <div className="col-span-2 grid grid-cols-2 gap-4"> {/* Two-column grid layout */}
+            <div className="mt-6 w-full">
+              <div className="grid grid-cols-3 gap-4 max-w-[1200px]"> {/* Two-column grid layout */}
                 {products.map((product, index) => (
                   <ProductResult
                     key={product.id || `product-${index}`}
@@ -124,7 +125,9 @@ export default function Home() {
                   />
                 ))}
               </div>
-              <LDSidePanel decision={decision} contextForDisplay={contextForDisplay}/>
+              <div className="fixed top-28 right-5 w-[20%] p-2 rounded">
+                <LDSidePanel decision={decision} contextForDisplay={contextForDisplay}/>  
+              </div>
             </div>
           ) : null}
         </div>

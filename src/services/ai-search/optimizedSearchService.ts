@@ -12,10 +12,7 @@ interface ExperimentDecisionParams {
 }
 
 // Update the context based on GPT decision
-function updateUserContext(
-  currentContext: UserContext,
-  activationDecision: { addAffinity: string }
-): UserContext {
+function updateUserContext( currentContext: UserContext, activationDecision: { addAffinity: string }): UserContext {
   const newContext = { ...currentContext };
 
   if (!newContext.custom) newContext.custom = {};
@@ -30,6 +27,7 @@ function updateUserContext(
 }
 
 export async function getFlagAndExperimentDecision(query: string, params: ExperimentDecisionParams, clientContext: UserContext) {
+  
   const [, gptActivationDecision] = await Promise.all([
     ldClient.waitForInitialization(), // Wait for LaunchDarkly client initialization
     dynamicToggler.activateExperimentDecision(query, params) // API call for experiment decision
@@ -52,7 +50,6 @@ export async function getFlagAndExperimentDecision(query: string, params: Experi
 
 
   // Pass the updated context to LaunchDarkly to evaluate the flag
-  console.log("Using userContext:", updatedContext);
   const ldFlagDecision = await ldClient.variationDetail('gen-z-optimized-search', updatedContext, false);
 
   ldClient.track("user-searched", clientContext, {
