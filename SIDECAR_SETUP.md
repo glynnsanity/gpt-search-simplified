@@ -35,10 +35,16 @@ This guide will help you set up LD Sidecar visual A/B testing in your gpt-search
 ## Step 3: Create LaunchDarkly Flag
 
 1. In your LaunchDarkly dashboard, create a new flag
-2. Set the flag key to: `sidecar_search_experiments`
+2. Set the flag key to: `sidecar-test-page`
 3. Set the flag type to "JSON"
-4. Create a variation with the example configuration from `sidecar-flag-example.json`
+4. Create a variation with the example configuration from `sidecar-test-page-example.json`
 5. Enable the flag for your desired segments
+
+### For Testing the Chrome Extension
+
+1. Navigate to `/test-sidecar` in your NextJS app
+2. This page is specifically designed for testing the sidecar-ld Chrome extension
+3. It contains various elements (headings, buttons, images, forms) that are perfect for experimentation
 
 ## Step 4: Test the Integration
 
@@ -76,7 +82,7 @@ Use the `sidecar-flag-example.json` file as a starting point. This example inclu
 - Verify the extension has permission to access the page
 
 ### Flag Not Evaluating
-- Confirm the flag key matches exactly: `sidecar_search_experiments`
+- Confirm the flag key matches exactly: `sidecar-test-page`
 - Check that the flag is enabled in LaunchDarkly
 - Verify your Client-side ID is correct
 - Check browser console for LaunchDarkly connection errors

@@ -1,0 +1,63 @@
+{
+  "v": 1,
+  "url": {
+    "include": ["*/test-sidecar*"],
+    "exclude": []
+  },
+  "ops": [
+    {
+      "type": "text",
+      "sel": "h1",
+      "value": "🚀 Enhanced Sidecar Test Page",
+      "name": "Update main heading"
+    },
+    {
+      "type": "style.set",
+      "sel": ".bg-gray-50",
+      "value": "background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);",
+      "name": "Change background gradient"
+    },
+    {
+      "type": "class.add",
+      "sel": "button",
+      "value": "transform hover:scale-105 transition-transform",
+      "name": "Add button animations"
+    },
+    {
+      "type": "text",
+      "sel": ".text-4xl",
+      "value": "🎯 A/B Testing in Action!",
+      "name": "Update hero title"
+    },
+    {
+      "type": "attr.set",
+      "sel": "img",
+      "name": "data-experiment",
+      "value": "product-image-test",
+      "name": "Add experiment tracking to images"
+    }
+  ],
+  "goals": [
+    {
+      "type": "pageview",
+      "event": "test_page_viewed"
+    },
+    {
+      "type": "click",
+      "sel": "button",
+      "event": "test_button_clicked"
+    },
+    {
+      "type": "click",
+      "sel": "img",
+      "event": "product_image_clicked"
+    }
+  ],
+  "antiFlicker": {
+    "timeoutMs": 800,
+    "masks": [
+      "h1",
+      ".bg-white"
+    ]
+  }
+}
