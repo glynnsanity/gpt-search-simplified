@@ -1,0 +1,42 @@
+{
+  "v": 1,
+  "url": {
+    "include": ["*"],
+    "exclude": ["*/admin/*", "*/api/*"]
+  },
+  "ops": [
+    {
+      "type": "text",
+      "sel": "h1",
+      "value": "Welcome to Our Enhanced Search Experience!",
+      "name": "Update main heading"
+    },
+    {
+      "type": "style.set",
+      "sel": ".search-container",
+      "value": "background-color: #f0f8ff; border-radius: 8px; padding: 20px;",
+      "name": "Style search container"
+    },
+    {
+      "type": "class.add",
+      "sel": "button[type='submit']",
+      "value": "btn-primary-enhanced",
+      "name": "Add enhanced button class"
+    }
+  ],
+  "goals": [
+    {
+      "type": "pageview",
+      "event": "search_page_viewed"
+    },
+    {
+      "type": "click",
+      "sel": "button[type='submit']",
+      "event": "search_button_clicked"
+    }
+  ],
+  "antiFlicker": {
+    "timeoutMs": 600,
+    "masks": [".search-container", "h1"]
+  }
+}

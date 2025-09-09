@@ -2,8 +2,6 @@
 import { getLaunchDarklyClient } from '../launchdarkly/launchdarklyServerClient';
 import { LDDynamicToggleConstructor } from '@/services/dynamic-trigger/LDDynamicToggleConstructor';
 import { UserContext } from '@/types/usercontext';
-
-const ldClient = getLaunchDarklyClient();
 const dynamicToggler = new LDDynamicToggleConstructor({ model: 'gpt-4o', temperature: 0.3 });
 
 interface ExperimentDecisionParams {
@@ -11,13 +9,8 @@ interface ExperimentDecisionParams {
   description: string;
 }
 
-
-/* -- Option for initializing the dynamicToggler after evaluating an experiment for ChatGPT models -- */
-/* 
-  await ldClient.waitForInitialization();
-  const ldModelJSON = await ldClient.jsonVariation('chat-gpt-model-test', clientContext, false);
-  const experimentalDynamicToggler = new LDDynamicToggleConstructor(ldModelJSON)
-*/
+// start LD client
+const ldClient = getLaunchDarklyClient();
 
 
 // Update the context based on GPT decision
@@ -34,6 +27,8 @@ function updateUserContext( currentContext: UserContext, activationDecision: { a
 
   return newContext;
 }
+
+
 
 export async function getFlagAndExperimentDecision(query: string, params: ExperimentDecisionParams, clientContext: UserContext) {
   
@@ -55,3 +50,18 @@ export async function getFlagAndExperimentDecision(query: string, params: Experi
 
   return { ldFlagDecision, gptActivationDecision };
 }
+
+
+
+
+
+
+
+
+
+/* -- Option for initializing the dynamicToggler after evaluating an experiment for ChatGPT models -- */
+/* 
+  await ldClient.waitForInitialization();
+  const ldModelJSON = await ldClient.jsonVariation('chat-gpt-model-test', clientContext, false);
+  const experimentalDynamicToggler = new LDDynamicToggleConstructor(ldModelJSON)
+*/

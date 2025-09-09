@@ -15,6 +15,8 @@ export const ProductResult: React.FC<ProductResultProps> = ({ descriptionHtml, t
     ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'p', 'br', 'ul', 'li'],
     ALLOWED_ATTR: ['href', 'target', 'rel']
   });
+
+  image = 'https://placehold.co/400';
   // const descriptionSinHtml = descriptionHtml.replace(/<\/?[^>]+(>|$)/g, "");
 
   return (

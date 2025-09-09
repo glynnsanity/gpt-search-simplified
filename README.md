@@ -9,13 +9,15 @@ However, for this app to function it will require some API keys defined in an .e
 OPENAI_API_KEY=\
 NEXT_PUBLIC_SUPABASE_URL=\
 SUPABASE_SERVICE_ROLE_KEY=\
-LAUNCH_DARKLY_SDK_KEY=
+LAUNCH_DARKLY_SDK_KEY=\
+NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID=
 
 (This is actually incomplete since there's a number of database set up steps that I'll have to come back to)
 
 Primary features to note:\
 ChatGPT Embeddings & ChatCompletion APIs\
-LaunchDarkly Flag Evaluation & Segment Bucketing
+LaunchDarkly Flag Evaluation & Segment Bucketing\
+LD Sidecar Visual A/B Testing Integration
 
 ## High-Level Highlights for LaunchDarkly
 
@@ -66,5 +68,36 @@ The api route then sends back an object with product data and decision data rega
 ### UX Display & Context Persistence
 
 Once the data is returned to our component, we render the product data and a side column view with the results from our LaunchDarkly evaluator. In addition to this, we update both our context state and sessionStorage with the upated User Context.
+
+## LD Sidecar Integration
+
+This project now includes integration with LD Sidecar, a visual A/B testing tool that enables you to create and manage experiments directly through a Chrome extension without requiring backend infrastructure.
+
+### Setup
+
+1. **Install the Chrome Extension**: Load the LD Sidecar extension from the `sidecar-ld/extension/dist` folder
+2. **Environment Variables**: Ensure `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID` is set in your `.env.local` file
+3. **Create LaunchDarkly Flag**: Create a JSON flag with key `sidecar_search_experiments` in your LaunchDarkly dashboard
+
+### Usage
+
+1. Open your website in Chrome with the LD Sidecar extension installed
+2. Click the extension icon to open the visual editor
+3. Select elements on the page to modify (text, styles, classes, etc.)
+4. Configure URL targeting rules and goals
+5. Copy the generated JSON configuration
+6. Paste the JSON into your LaunchDarkly flag variation
+7. Enable the flag to activate the experiment
+
+### Features
+
+- **Visual Element Selection**: Point-and-click interface for selecting page elements
+- **Real-time Preview**: See changes before deploying to production
+- **URL Targeting**: Configure which pages the experiment should run on
+- **Goal Tracking**: Track pageviews and click events
+- **Privacy-First**: Respects DNT, GPC, and consent preferences
+- **SPA Support**: Works with client-side routing
+
+The sidecar runtime script is automatically loaded and initialized when the page loads, reading experiment configurations from your LaunchDarkly flags and applying DOM changes accordingly.
 
 Feel free reach out with questions :)

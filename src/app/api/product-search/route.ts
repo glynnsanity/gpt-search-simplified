@@ -26,6 +26,11 @@ export async function POST(req: Request): Promise<Response> {
       description: 'This experiment is intended to optimize search functionality specifically for Gen Z.'
     }, clientContext)
 
+    /* Statsig Feature Decision */
+    /* Making this more manual */
+
+    
+
     /* GPT embedding search */
     const embeddingInput = query.replace(/\n/g, " ");
     const embeddingResponse = await fetch("https://api.openai.com/v1/embeddings", {

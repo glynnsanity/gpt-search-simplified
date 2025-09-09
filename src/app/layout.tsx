@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import LDSidecarLoader from "./components/LDSidecarLoader/LDSidecarLoader";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,6 +24,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <LDSidecarLoader />
       </body>
     </html>
   );
