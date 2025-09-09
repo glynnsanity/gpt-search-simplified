@@ -1,5 +1,6 @@
 // index.js
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { StrictMode } from 'react';
 import { asyncWithLDProvider } from 'launchdarkly-react-client-sdk';
 
 const renderApp = async () => {
@@ -12,14 +13,17 @@ const renderApp = async () => {
     },
   });
 
-  ReactDOM.render(
-    <React.StrictMode>
-      <LDProvider>
-        <App />
-      </LDProvider>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
+  const rootElement = document.getElementById('root');
+  if (rootElement) {
+    const root = createRoot(rootElement);
+    root.render(
+      <StrictMode>
+        <LDProvider>
+          <App />
+        </LDProvider>
+      </StrictMode>
+    );
+  }
 };
 
 renderApp();
